@@ -1,0 +1,48 @@
+// from under meals
+
+{{#link-to 'meal.addFood' this}}
+<span class="glyphicon glyphicon-plus-sign"></span> <span>Add Food</span>
+{{/link-to}}
+
+
+FROM MEAL:
+
+
+        <h3>"{{title}}"
+            <small>Edit mode</small>
+        </h3>
+
+        <div class="food-table">
+            <table>
+                <tr>
+                    <th><!-- action column--></th>
+                    <th>name</th>
+                    <th>amount</th>
+                    <th>protein</th>
+                    <th>complex</th>
+                    <th>sugar</th>
+                    <th>o3</th>
+                    <th>o6</th>
+                    <th>monoUnsaturated</th>
+                    <th>saturated</th>
+                </tr>
+                {{#each food in foods}}
+                <tr>
+                    <td>
+                        <button>
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                    <td>{{food.name}}</td>
+                    <td>{{food.amount}}</td>
+                    <td>{{food.protein}}</td>
+                    <td>{{food.complex}}</td>
+                    <td>{{food.sugar}}</td>
+                    <td>{{food.o3}}</td>
+                    <td>{{food.o6}}</td>
+                    <td>{{food.monoUnsaturated}}</td>
+                    <td>{{food.saturated}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>

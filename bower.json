@@ -1,0 +1,14 @@
+{
+  "name": "meal-planner-e",
+  "description": "Simple meal planner.",
+  "version": "0.0.1",
+  "homepage": "https://localhost/git/ember/meal-planner-e",
+  "private": true,
+  "dependencies": {
+    "ember": "~1.8.1",
+    "ember-data": "1.0.0-beta.11",
+    "bootstrap": "~3.3.1",
+    "less": "~2.0.0",
+    "font-awesome-bower" : "4.2.0"
+  }
+}

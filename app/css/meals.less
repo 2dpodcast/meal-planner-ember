@@ -1,0 +1,77 @@
+//remember to use mixins, if selectors are not available directly from bootstrap.less
+// notice: classes like ".hidden-..." are not accessible via less from css distribution
+@import (reference) "../bower_components/bootstrap/less/bootstrap.less";
+
+
+@media (min-width: @screen-sm) { // in accordance with H1-4 hidden on -xs!
+  #meals-wrapper {
+    border: solid 1px #eee;
+    padding: 20px;
+  }
+}
+
+
+
+section#meals {
+
+  button {
+    span {
+      .app-button-text-big;
+    }
+  }
+
+  div {
+    input {
+      .input-lg;
+      font-size: 15px;
+      width: 240px;
+      margin: 0px 5px 0px 24px;
+    }
+  }
+
+  #meals-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+
+    li {
+      position: relative;
+      font-size: 24px;
+      border-bottom: 1px dotted #ccc;
+      margin: 20px 0 20px 0;
+
+      a {
+        display: inline-block;
+        color: rgba(0, 0, 0, 0.63);
+        font-weight: normal;
+        font-size: 16px;
+
+        &:hover {
+          text-decoration: none;
+          color: rgba(0, 0, 0, 1);
+        }
+
+        @media (max-width: @screen-sm) { // in accordance with H1-4 hidden on -xs!
+          font-weight: bold;
+        }
+      }
+
+      button {
+        span {
+          font-size: 25px;
+          color: #808080;
+
+          &:hover {
+            text-decoration: none;
+            color: rgba(0, 0, 0, 1);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+

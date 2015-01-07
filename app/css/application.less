@@ -1,0 +1,110 @@
+//remember to use mixins, if selectors are not available directly from bootstrap.less
+// notice: classes like ".hidden-..." are not accessible via less from css distribution
+@import (reference) "../bower_components/bootstrap/less/bootstrap.less";
+
+// to use as mixins:
+.app-button-text-big {
+  font-size: 28px;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+
+// defaults!
+body {
+  padding-top: 50px;  // accommodate sticky navbar!
+}
+
+h1, h2, h3 {
+  .hidden-xs;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+hr {
+  width: 100%;
+}
+
+button {   // buttons for exclusive use with bootstrap glyphicons
+  border: 0;
+  background: 0;
+  vertical-align: middle;
+}
+
+
+// less would not apply 'navbar-brand' correctly unless nested as below:
+.mp-navbar .header-logo-pc {
+  .navbar-brand;
+  .hidden-xs;
+  color: #9d9d9d;
+}
+
+.mp-navbar .header-logo-mobile {
+  .navbar-brand;
+  .visible-xs;
+  color: #9d9d9d;
+}
+
+.mp-navbar {
+  .navbar;
+  .navbar-inverse;
+  .navbar-fixed-top;
+
+  .container {
+    .navbar-header {
+      .header-breadcrumb {
+
+        .visible-xs;
+        .pull-left;
+        line-height: 48px;
+        color: #9d9d9d;
+      }
+    }
+    #navbar {
+      .collapse;
+      .navbar-collapse;
+    }
+  }
+}
+
+
+.main {
+
+
+  .container; // width of container imposed by bootstrap, not optimal for table views ..
+  // check: http://getbootstrap.com/css/#grid-options
+
+  #column-left {
+    .hidden-md; // or smaller implied?
+    .make-lg-column(3);
+  }
+
+  .outlet {
+    .make-md-column(12); // or smaller implied?
+    .make-lg-column(6);
+
+    padding: 20px 0px;
+    text-align: center;
+  }
+
+  .column-right {
+    .hidden-md; // or smaller implied?
+    .make-lg-column(3); // or bigger implied?
+  }
+}
+
+footer {
+  .container;
+
+  // first-child does not seem to work properly with less!
+  p:first-of-type{
+    .pull-left;
+  }
+
+  p:nth-of-type(2) {
+    .pull-right;
+  }
+}
