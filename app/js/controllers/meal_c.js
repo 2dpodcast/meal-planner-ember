@@ -17,16 +17,6 @@ App.MealController = Ember.ObjectController.extend({
             var meal = this.get('model');
             meal.deleteRecord();
             meal.save();
-        },
-        // remember not all elements will provide value argument!
-        searchFood: function () {
-
-            this.transitionToRoute('meal', this.model.id,
-                {
-                    queryParams: {searchFoodKey: this.get("searchFieldValue")}
-                }
-            );
-            Ember.$('.input-lg').blur();
         }
     }
 });

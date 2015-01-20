@@ -1,5 +1,12 @@
 var App = Ember.Application.create({LOG_TRANSITIONS: true});
-App.ApplicationAdapter = DS.FixtureAdapter.extend();  // let app know to use fixtures!
+
+// let app know to use fixtures!
+App.ApplicationAdapter = DS.FixtureAdapter.extend({
+    //querying that would normally be done by server!
+    queryFixtures: function (records, query, type) {
+        return records;
+    }
+});
 
 // define URL mappings (use resource for nouns, and routes for adjectives & verbs)!
 App.Router.map(function () {
@@ -59,17 +66,17 @@ App.MealSearchFoodRoute = Ember.Route.extend({
             refreshModel: true
         }
     },
-    model: function(params, transition) {
-
+    model: function (params, transition) {
         var expression = new RegExp(params.query);
-        return this.store.filter('food', function(food) {
-            // TODO: LATER: figure out efficient way to filter!
+
+        // filter() does not contact server(or fixture), until queryParam arg is provided!
+        return this.store.filter('food', {query: params.query}, function (food) {
+            // regardless what server returns we still filter here!
             return expression.exec(food.get('name'));
-            //return food.get('name') === params.query;
         });
     },
     actions: {
-        queryParamsDidChange: function(params) {
+        queryParamsDidChange: function (params) {
             // to update search input value on query change!
             this.controllerFor('mealSearchFood').set('queryField', params.query);
             this.refresh();  // otherwise transition would stop without calling model!

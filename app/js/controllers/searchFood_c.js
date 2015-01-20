@@ -6,6 +6,7 @@ App.MealSearchFoodController = Ember.Controller.extend({
     actions: {
         search: function () {
             this.set('query', this.get('queryField'));
+            Ember.$('.input-lg').blur(); // hides keyboard on mobile!
         },
 
         addFoodToMeal: function () {
