@@ -1,6 +1,7 @@
 #IDE related
 *.iml
 .idea/*
+.idea/workspace.xml
 #!idea/runConfigurations
 
 
