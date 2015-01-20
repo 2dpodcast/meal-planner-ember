@@ -72,6 +72,8 @@ App.MealSearchFoodRoute = Ember.Route.extend({
         // filter() does not contact server(or fixture), until queryParam arg is provided!
         return this.store.filter('food', {query: params.query}, function (food) {
             // regardless what server returns we still filter here!
+
+            // TODO : Ignore case!
             return expression.exec(food.get('name'));
         });
     },
