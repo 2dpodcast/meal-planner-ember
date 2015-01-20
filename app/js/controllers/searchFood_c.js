@@ -3,20 +3,9 @@ App.MealSearchFoodController = Ember.Controller.extend({
     queryParams: ['query'],
     query: null,
 
-    init: function() {
-      console.log("init")
-    },
-
     actions: {
-        searchFoods: function () {
-            var url = '../test/food_data.json';
-
-            var foods = DS.PromiseArray.create({
-                promise: $.getJSON(url)
-            });
-
-            this.set('foodSearch.foods', foods);
-            this.set('searchedFoodTitle', '');   // Clear the "New Meal" text field
+        search: function () {
+            this.set('query', this.get('queryField'));
         },
 
         addFoodToMeal: function () {

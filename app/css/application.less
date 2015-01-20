@@ -2,6 +2,17 @@
 // notice: classes like ".hidden-..." are not accessible via less from css distribution
 @import (reference) "../bower_components/bootstrap/less/bootstrap.less";
 
+/*
+  IE 8+ supported!
+*/
+
+// All elements padding to not increase box size!
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 // to use as mixins:
 .app-button-text-big {
   font-size: 28px;
@@ -58,11 +69,24 @@ button {   // buttons for exclusive use with bootstrap glyphicons
       .header-breadcrumb {
 
         .visible-xs;
-        .pull-left;
-        line-height: 48px;
+
         color: #9d9d9d;
+
+        position: absolute;
+        top: 13px;
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+      .center {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70px;
+        height: 20px;
+        background-color: #b0e0e6;
       }
     }
+
     #navbar {
       .collapse;
       .navbar-collapse;

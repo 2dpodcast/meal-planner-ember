@@ -17,8 +17,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="header-logo-pc" href="#">Meal Planner EM</a>
-                <a class="header-logo-mobile" href="#">MPE</a>
-                <span class="header-breadcrumb">named outlet?  {{outlet mobileTitle}}</span>
+                <a class="header-logo-mobile" href="#">MP</a>
+
+                <div class="header-breadcrumb">{{outlet "mobileTitle"}}</div>
 
                 <!--3 stripes button-->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -140,30 +141,13 @@
             <i class="fa fa-save fa-2x"></i> Save</a>
 
         {{foods-table foods=foods actionIconAction="removeFood" iconName="fa fa-trash-o"}}
-
-        <section class="food_search">
-            {{input class="input-lg" type="text" placeholder="find & add food to this meal ..."
-            value=searchFieldValue action="searchFood"}}
-            <!--turn into .hbs to suppress warnings-->
-            <button {{ action
-            "searchFood"}}>
-            <span class="glyphicon glyphicon-search search-icon"></span>
-            </button>
-
-            {{#if searchFoodKey}}
-            ... looking for {{searchFoodKey}}
-            {{/if}}
-
-            {{foods-table foods=searchedFoods actionIconAction="addFood" iconName="fa fa-plus-circle"
-            isLoading=isLoadingSearch}}
-        </section>
-
+        {{outlet}} <!-- for search template -->
     </div>
 </script>
 
 <!--MEAL Mobile Title-->
 <script type='text/x-handlebars' data-template-name='mealMobileTitle'>
-    {{title}}
+    "{{title}}"
 </script>
 
 <!--MEAL LOADING-->
@@ -177,21 +161,25 @@
 <!--SEARCH_FOOD -->
 <script type='text/x-handlebars' data-template-name='meal/searchFood'>
     <div id="add_food_wrapper">
-
         <section class="food_search">
-            {{input class="input-lg" type="text" placeholder="find & add food to this meal ..."
-            value=searchField action="goToSearchFood"}}
-            <!--turn into .hbs to suppress warnings-->
-            <button {{ action
-            "goToSearchFood"}}>
-            <span class="glyphicon glyphicon-search"></span>
+            <!-- ember is temperamental with  query param change when not using forms (bare inputs/buttons)-->
+            <!--it may cause unforeseen binding and re-triggering of action method on query param change-->
+            <form {{action
+            "search" on="submit"}}>
+            {{input value=queryField class="input-lg" placeholder="find & add food to this meal ..."}}
+            <button type="submit">
+                <span class="glyphicon glyphicon-search"></span>
             </button>
-        </section>
+            </form>
 
-        <section id="search-result">
+            {{#if query}}
+            ... looking for {{query}}
+            {{/if}}
+
+            {{foods-table foods=model actionIconAction="addFood" iconName="fa fa-plus-circle"
+            isLoading=isLoadingSearch}}
         </section>
     </div>
-
 </script>
 
 <!--CONTACT -->
@@ -214,7 +202,12 @@
     <div class="foods-table">
         <table>
             <tr>
-                <th><!-- action column--></th>
+                <th>
+                    {{#if saveIcon}}
+                    <!-- action column-->
+                    <button><span><i class="fa fa-save fa-2x"></i></span></button>
+                    {{/if}}
+                </th>
                 <th>name</th>
                 <th>amount</th>
                 <th>protein</th>
@@ -257,7 +250,8 @@
 
 <script src='bower_components/jquery/dist/jquery.js'></script>
 <script src='bower_components/handlebars/handlebars.min.js'></script>
-<script src='bower_components/ember/ember.js'></script>
+<!--<script src='bower_components/ember/ember.js'></script>-->
+<script src='http://builds.emberjs.com/ember-latest.js'></script>
 <script src='bower_components/ember-data/ember-data.js'></script>
 
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>

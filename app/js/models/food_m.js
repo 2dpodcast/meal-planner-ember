@@ -12,6 +12,7 @@ App.Food = DS.Model.extend({
     "gi": DS.attr()
 });
 
+// attach fixtures to model's Class
 App.Food.FIXTURES = [
     {
         "id": 1,
