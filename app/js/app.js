@@ -30,6 +30,12 @@ App.MealRoute = Ember.Route.extend({
     renderTemplate: function () {
         this.render('meal');  // render default
 
+        this.render('mealMobileLogo', {   // the template to render
+            into: 'application',                // the template to render into
+            outlet: 'mobileLogo',              // the name of the outlet in that template
+            controller: 'meal'        // the controller to use for the template
+        });
+
         this.render('mealMobileTitle', {   // the template to render
             into: 'application',                // the template to render into
             outlet: 'mobileTitle',              // the name of the outlet in that template

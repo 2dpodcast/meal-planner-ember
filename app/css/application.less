@@ -56,7 +56,16 @@ button {   // buttons for exclusive use with bootstrap glyphicons
 .mp-navbar .header-logo-mobile {
   .navbar-brand;
   .visible-xs;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 50px;
+  width: 50px;
+  padding: 11px 11px;
+
   color: #9d9d9d;
+  font-size: 27px;
 }
 
 .mp-navbar {
@@ -66,18 +75,33 @@ button {   // buttons for exclusive use with bootstrap glyphicons
 
   .container {
     .navbar-header {
+
+      height: 50px;
+
       .header-breadcrumb {
 
-        .visible-xs;
+        // workaround for "visible-xs changes inline into block"
+        .hidden-sm;
+        .hidden-md;
+        .hidden-lg;
+
+
+        height: 30px;
+        margin: 13px 60px;
+        overflow: hidden;
 
         color: #9d9d9d;
-
-        position: absolute;
-        top: 13px;
-        display: block;
-        width: 100%;
         text-align: center;
+        font-size: 15px;
       }
+
+      .navbar-toggle {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+
       .center {
         margin-left: auto;
         margin-right: auto;

@@ -17,7 +17,7 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="header-logo-pc" href="#">Meal Planner EM</a>
-                <a class="header-logo-mobile" href="#">MP</a>
+                {{outlet mobileLogo}}
 
                 <div class="header-breadcrumb">{{outlet "mobileTitle"}}</div>
 
@@ -109,7 +109,7 @@
                     'removeMeal'}}>
                     <span class="fa fa-trash-o"></span>
                     </button>
-                    {{#link-to 'meal' this (query-params searchFoodKey=false)}}
+                    {{#link-to 'meal.searchFood' this (query-params searchFoodKey=false)}}
                     {{title}}
                     <span class="glyphicon glyphicon-edit"></span>
                     {{/link-to}}
@@ -128,20 +128,20 @@
 <!--MEAL -->
 <script type="text/x-handlebars" data-template-name="meal">
     <div id="meal">
-        {{#link-to "meals"}}
-        <span class="fa fa-angle-left"></span>
-        Back to Meals
-        {{/link-to}}
-
         <h3>"{{title}}"
             <small>Editing meal</small>
         </h3>
-
-        <a class="btn" href="#">
-            <i class="fa fa-save fa-2x"></i> Save</a>
-
         {{foods-table foods=foods actionIconAction="removeFood" iconName="fa fa-trash-o"}}
         {{outlet}} <!-- for search template -->
+    </div>
+</script>
+
+<!--MEAL Mobile Logo-->
+<script type='text/x-handlebars' data-template-name='mealMobileLogo'>
+    <div class="header-logo-mobile">
+        {{#link-to "meals" class="header-logo-mobile"}}
+        <span class="fa fa-angle-left"></span>
+        {{/link-to}}
     </div>
 </script>
 
@@ -149,6 +149,8 @@
 <script type='text/x-handlebars' data-template-name='mealMobileTitle'>
     "{{title}}"
 </script>
+
+
 
 <!--MEAL LOADING-->
 <script type='text/x-handlebars' data-template-name='meal/loading'>
@@ -171,11 +173,6 @@
                 <span class="glyphicon glyphicon-search"></span>
             </button>
             </form>
-
-            {{#if query}}
-            ... looking for {{query}}
-            {{/if}}
-
             {{foods-table foods=model actionIconAction="addFood" iconName="fa fa-plus-circle"
             isLoading=isLoadingSearch}}
         </section>
@@ -238,8 +235,8 @@
             </tr>
             {{/each}}
             <tr class="summary">
-                <td>Summary</td>
                 <td></td>
+                <td>Summary</td>
                 <td></td>
                 <td>{{proteinSum}}</td>
                 <td>{{complexSum}}</td>
