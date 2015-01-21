@@ -201,7 +201,7 @@
     {{#if foods}}
     <div class="foods-table">
         <table>
-            <tr>
+            <tr class="headers">
                 <th>
                     {{#if saveIcon}}
                     <!-- action column-->
@@ -219,7 +219,7 @@
                 <th>saturated</th>
             </tr>
             {{#each food in foods}}
-            <tr>
+            <tr class="foodRow">
                 <td>
                     <button {{ action
                     "actionIconClick" food}}>
@@ -237,6 +237,18 @@
                 <td>{{food.saturated}}</td>
             </tr>
             {{/each}}
+            <tr class="summary">
+                <td>Summary</td>
+                <td></td>
+                <td></td>
+                <td>{{proteinSum}}</td>
+                <td>{{complexSum}}</td>
+                <td>{{sugarSum}}</td>
+                <td>{{o3Sum}}</td>
+                <td>{{o6Sum}}</td>
+                <td>{{monoSum}}</td>
+                <td>{{saturatedSum}}</td>
+            </tr>
         </table>
     </div>
     {{/if}}
