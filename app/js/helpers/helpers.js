@@ -37,7 +37,8 @@ Ember.Handlebars.helper('calSum', function (foods, options) {
 }, '@each.calories', '@each.amount');
 
 Ember.Handlebars.helper('carbsSum', function (foods, options) {
-    return App.getNutrientSum(foods, "complex") + App.getNutrientSum(foods, "sugar");
+    var sum =  App.getNutrientSum(foods, "complex") + App.getNutrientSum(foods, "sugar");
+    return sum.toString().substring(0, 4);
 }, '@each.complex', '@each.sug', '@each.amount');
 
 Ember.Handlebars.helper('fatSum', function (foods, options) {
