@@ -1,6 +1,4 @@
-App.FoodsTableComponent = Ember.Component.extend({
-    // leave top element as wrapper!
-    isLoading: false,  // if unspecified by components user (user object)!
+App.FoodsSummaryTableComponent = Ember.Component.extend({
     actions: {
         actionIconClick: function (food) {
             console.log("actionIconAction");

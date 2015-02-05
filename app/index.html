@@ -109,7 +109,7 @@
                     'removeMeal'}}>
                     <span class="fa fa-trash-o"></span>
                     </button>
-                    {{#link-to 'meal.searchFood' this (query-params searchFoodKey=false)}}
+                    {{#link-to 'meal' this (query-params searchFoodKey=false)}}
                     {{title}}
                     <span class="glyphicon glyphicon-edit"></span>
                     {{/link-to}}
@@ -128,10 +128,22 @@
 <!--MEAL -->
 <script type="text/x-handlebars" data-template-name="meal">
     <div id="meal">
+        <!--h3 is be hidden on mobile-->
         <h3>"{{title}}"
             <small>Editing meal</small>
         </h3>
+
+        {{#if visible}}
         {{foods-table foods=foods actionIconAction="removeFood" iconName="fa fa-trash-o"}}
+        <button {{ action "goToSearch" food}}><span><i class="fa fa-plus-circle"></i> add Food</span></button>
+
+
+
+        {{else}}
+        {{foods-summary-table foods=foods}}
+        <button {{ action "goToMeal" food}}><span><i class="fa fa-angle-left"></i> back to Meal</span></button>
+        {{/if}}
+
         {{outlet}} <!-- for search template -->
     </div>
 </script>
@@ -149,7 +161,6 @@
 <script type='text/x-handlebars' data-template-name='mealMobileTitle'>
     "{{title}}"
 </script>
-
 
 
 <!--MEAL LOADING-->
@@ -171,6 +182,12 @@
             {{input value=queryField class="input-lg" placeholder="find & add food to this meal ..."}}
             <button type="submit">
                 <span class="glyphicon glyphicon-search"></span>
+            </button>
+            <button class="navigation">
+                <span class="fa fa-arrow-circle-down"></span>
+            </button>
+            <button class="navigation">
+                <span class="fa fa-arrow-circle-up"></span>
             </button>
             </form>
             {{foods-table foods=model actionIconAction="addFood" iconName="fa fa-plus-circle"
@@ -198,6 +215,20 @@
     {{#if foods}}
     <div class="foods-table">
         <table>
+            <colgroup>
+                <col class="icon" />
+                <col class="name" />
+                <col class="amount" />
+                <col class="nutrient protein" />
+                <col class="nutrient complex" />
+                <col class="nutrient sugar" />
+                <col class="nutrient o3" />
+                <col class="nutrient o6" />
+                <col class="nutrient mUnsaturated" />
+                <col class="nutrient saturated" />
+                <col class="nutrient calories" />
+            </colgroup>
+
             <tr class="headers">
                 <th>
                     {{#if saveIcon}}
@@ -214,6 +245,7 @@
                 <th>o6</th>
                 <th>mono unsaturated</th>
                 <th>saturated</th>
+                <th>calories</th>
             </tr>
             {{#each food in foods}}
             <tr class="foodRow">
@@ -224,27 +256,30 @@
                     </button>
                 </td>
                 <td>{{food.name}}</td>
-                <td>{{input class="amountSelector" value=food.amount type="number" maxlength="3" min="0" max="999"}}</td>
-                <td>{{food.protein}}</td>
-                <td>{{food.complex}}</td>
-                <td>{{food.sugar}}</td>
-                <td>{{food.o3}}</td>
-                <td>{{food.o6}}</td>
-                <td>{{food.monoUnsaturated}}</td>
-                <td>{{food.saturated}}</td>
+                <td>{{input class="amountSelector" value=food.amount type="number" maxlength="3" min="0" max="999"}}
+                </td>
+                <td>{{roundup food.protein}}</td>
+                <td>{{roundup food.complex}}</td>
+                <td>{{roundup food.sugar}}</td>
+                <td>{{roundup food.o3}}</td>
+                <td>{{roundup food.o6}}</td>
+                <td>{{roundup food.monoUnsaturated}}</td>
+                <td>{{roundup food.saturated}}</td>
+                <td>{{roundup food.calories}}</td>
             </tr>
             {{/each}}
             <tr class="summary">
                 <td></td>
                 <td>Summary</td>
                 <td></td>
-                <td>{{proteinSum}}</td>
-                <td>{{complexSum}}</td>
-                <td>{{sugarSum}}</td>
-                <td>{{o3Sum}}</td>
-                <td>{{o6Sum}}</td>
-                <td>{{monoSum}}</td>
-                <td>{{saturatedSum}}</td>
+                <td>{{proteinSum foods}}</td>
+                <td>{{complexSum foods}}</td>
+                <td>{{sugarSum foods}}</td>
+                <td>{{o3Sum foods}}</td>
+                <td>{{o6Sum foods}}</td>
+                <td>{{monoSum foods}}</td>
+                <td>{{saturatedSum foods}}</td>
+                <td>{{calSum foods}}</td>
             </tr>
         </table>
     </div>
@@ -252,6 +287,27 @@
     {{/if}}
 
 
+</script>
+
+<script type="text/x-handlebars" data-template-name="components/foods-summary-table">
+
+    <div class="foods-summary-table">
+        <table>
+            <tr class="summary">
+                <td></td>
+                <td>Summary</td>
+                <td></td>
+                <td>{{proteinSum foods}}</td>
+                <td>{{complexSum foods}}</td>
+                <td>{{sugarSum foods}}</td>
+                <td>{{o3Sum foods}}</td>
+                <td>{{o6Sum foods}}</td>
+                <td>{{monoSum foods}}</td>
+                <td>{{saturatedSum foods}}</td>
+                <td>{{calSum foods}}</td>
+            </tr>
+        </table>
+    </div>
 </script>
 
 <script> less = {relativeUrls: true} </script>
@@ -275,6 +331,7 @@
 <script src="js/controllers/meal_c.js"></script>
 <script src="js/controllers/searchFood_c.js"></script>
 <script src="js/components/foodsTable.js"></script>
+<script src="js/components/foodsSummaryTable.js"></script>
 
 
 </body>

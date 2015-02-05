@@ -22,16 +22,62 @@
 
 
   table {
+
+
+    col.icon {
+      width:55px;
+    }
+
+    col.name {
+      width:190px;
+    }
+
+    col.amount {
+      width:67px;
+    }
+
+    col.nutrient {
+      width: 70px;
+    }
+
+    col.protein {
+      background-color: rgba(165, 165, 255, 0.2);
+    }
+
+    col.sugar {
+      background-color: rgba(165, 255, 166, 0.22);
+    }
+
+    col.o6 {
+      background-color: rgba(255, 255, 0, 0.20);
+    }
+
+    col.mUnsaturated {
+      background-color: rgba(255, 165, 0, 0.20);
+    }
+
+    col.saturated {
+      background-color: rgba(255, 166, 166, 0.2);
+    }
+
     .table;
-    .table-striped;
+//    .table-striped;
+
+    table-layout: fixed;
 
     // override bootstrap table
     margin-bottom: 0;
     border: none;
 
     tr {
+      &.headers {
+//        background-color: #009900;
+//        display: block;
+//        position: fixed;
+      }
+
       &.summary {
-        background-color: rgba(255, 255, 0, 0.42);
+        background-color: rgba(0, 0, 0, 0.04);
       }
 
       th:nth-child(9) {
@@ -39,6 +85,10 @@
         line-height: 11px;
       }
       td {
+
+//        &:nth-child(4) {
+//          background-color: rgba(255, 165, 0, 0.25);
+//        }
         text-align: left;
         white-space: nowrap;
         overflow:hidden;
