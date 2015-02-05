@@ -290,20 +290,24 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="components/foods-summary-table">
-
     <div class="foods-summary-table">
         <table>
+            <colgroup>
+                <col class="nutrient protein" />
+                <col class="nutrient complex" />
+                <col class="nutrient mUnsaturated" />
+                <col class="nutrient" />
+            </colgroup>
+            <tr class="headers">
+                <th>protein</th>
+                <th>carbs</th>
+                <th>fat</th>
+                <th>calories</th>
+            </tr>
             <tr class="summary">
-                <td></td>
-                <td>Summary</td>
-                <td></td>
                 <td>{{proteinSum foods}}</td>
-                <td>{{complexSum foods}}</td>
-                <td>{{sugarSum foods}}</td>
-                <td>{{o3Sum foods}}</td>
-                <td>{{o6Sum foods}}</td>
-                <td>{{monoSum foods}}</td>
-                <td>{{saturatedSum foods}}</td>
+                <td>{{carbsSum foods}}</td>
+                <td>{{fatSum foods}}</td>
                 <td>{{calSum foods}}</td>
             </tr>
         </table>

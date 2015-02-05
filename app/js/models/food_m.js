@@ -1008,5 +1008,20 @@ App.Food.FIXTURES = [
         "calories": 393,
         "gi": "",
         "id": 76
+    },
+    {
+        "name": "sweet potato cooked",
+        "amount": 350,
+        "protein": 2,
+        "complex": 15,
+        "sugar": 0.6,
+        "fiber": 3,
+        "o3": 0.004,
+        "o6": 0.06,
+        "monoUnsaturated": 0,
+        "saturated": 0,
+        "calories": 90,
+        "gi": "",
+        "id": 77
     }
 ];

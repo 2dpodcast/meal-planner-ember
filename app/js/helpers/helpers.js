@@ -25,14 +25,22 @@ Ember.Handlebars.helper('o6Sum', function (foods, options) {
 }, '@each.o6', '@each.amount');
 
 Ember.Handlebars.helper('monoSum', function (foods, options) {
-    return App.getNutrientSum(foods, "o6");
+    return App.getNutrientSum(foods, "monoUnsaturated");
 }, '@each.o6', '@each.amount');
 
 Ember.Handlebars.helper('saturatedSum', function (foods, options) {
     return App.getNutrientSum(foods, "saturated");
 }, '@each.saturated', '@each.amount');
 
-
 Ember.Handlebars.helper('calSum', function (foods, options) {
     return App.getNutrientSum(foods, "calories");
 }, '@each.calories', '@each.amount');
+
+Ember.Handlebars.helper('carbsSum', function (foods, options) {
+    return App.getNutrientSum(foods, "complex") + App.getNutrientSum(foods, "sugar");
+}, '@each.complex', '@each.sug', '@each.amount');
+
+Ember.Handlebars.helper('fatSum', function (foods, options) {
+    return App.getNutrientSum(foods, "o3") + App.getNutrientSum(foods, "o6")
+        + App.getNutrientSum(foods, "monoUnsaturated") + App.getNutrientSum(foods, "saturated");
+}, '@each.complex', '@each.sug', '@each.amount');

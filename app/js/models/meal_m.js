@@ -28,5 +28,13 @@ App.Meal.FIXTURES = [
         foods: [
             1,2,3,4
         ]
+    },
+    {
+        id: 4,
+        title: 'all day',
+        isCompleted: false,
+        foods: [
+            74,75,20,30,77,76
+        ]
     }
 ];
