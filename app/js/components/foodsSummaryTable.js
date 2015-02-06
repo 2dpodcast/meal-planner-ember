@@ -1,8 +1,9 @@
 App.FoodsSummaryTableComponent = Ember.Component.extend({
     actions: {
-        actionIconClick: function (food) {
-            console.log("actionIconAction");
-            this.sendAction("actionIconAction", food);
+        // actions coming directly from component elements!
+        tableClickAction: function (food) {
+            console.log("tableClickAction");
+            this.sendAction("clickAction", food);  // as defined on component declaration!
         }
     },
 

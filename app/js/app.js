@@ -62,6 +62,16 @@ App.MealRoute = Ember.Route.extend({
         addFood: function (food) {
             var foods = this.modelFor('meal').get("foods");
             foods.addObject(food);
+        },
+
+        // transition to searchFood and hide meal table!
+        goToMeal: function() {
+            this.transitionTo('meal');
+        },
+
+        // transition to searchFood and hide meal table!
+        goToSearch: function() {
+            this.transitionTo('meal.searchFood', {queryParams: {query: null}});
         }
     },
 

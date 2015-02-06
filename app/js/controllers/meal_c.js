@@ -21,16 +21,6 @@ App.MealController = Ember.ObjectController.extend({
             var meal = this.get('model');
             meal.deleteRecord();
             meal.save();
-        },
-
-        // transition to searchFood and hide meal table!
-        goToSearch: function() {
-            this.transitionToRoute('meal.searchFood', {queryParams: {query: null}});
-        },
-
-        // transition to searchFood and hide meal table!
-        goToMeal: function() {
-            this.transitionToRoute('meal');
         }
     }
 });

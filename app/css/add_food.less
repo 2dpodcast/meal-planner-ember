@@ -4,6 +4,7 @@
 @import (reference, less) "../bower_components/bootstrap/dist/css/bootstrap.css";
 
 #add_food_wrapper {
+  margin-top: 20px;
 
   .food_search {
     form.input {
@@ -14,11 +15,19 @@
 
       &.navigation {
         float: right;
+        position: relative;
+        top: -24px;
       }
 
       margin-right: 10px;
       span {
         .app-button-text-big;
+        color: #959595;
+      }
+
+      // for fontAwesome
+      i {
+        font-size: 44px;
         color: #959595;
       }
     }

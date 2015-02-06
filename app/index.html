@@ -132,18 +132,13 @@
         <h3>"{{title}}"
             <small>Editing meal</small>
         </h3>
-
         {{#if visible}}
         {{foods-table foods=foods actionIconAction="removeFood" iconName="fa fa-trash-o"}}
-        <button {{ action "goToSearch" food}}><span><i class="fa fa-plus-circle"></i> add Food</span></button>
-
-
-
+        {{foods-summary-table foods=foods clickAction="goToMeal"}}
+        {{#link-to "meal.searchFood" class="addFood"}}<i class="fa fa-plus-circle"></i> Add Food{{/link-to}}
         {{else}}
-        {{foods-summary-table foods=foods}}
-        <button {{ action "goToMeal" food}}><span><i class="fa fa-angle-left"></i> back to Meal</span></button>
+        {{foods-summary-table foods=foods clickAction="goToMeal"}}
         {{/if}}
-
         {{outlet}} <!-- for search template -->
     </div>
 </script>
@@ -159,7 +154,7 @@
 
 <!--MEAL Mobile Title-->
 <script type='text/x-handlebars' data-template-name='mealMobileTitle'>
-    "{{title}}"
+    {{#link-to 'meal'}}"{{title}}"{{/link-to}}
 </script>
 
 
@@ -182,12 +177,6 @@
             {{input value=queryField class="input-lg" placeholder="find & add food to this meal ..."}}
             <button type="submit">
                 <span class="glyphicon glyphicon-search"></span>
-            </button>
-            <button class="navigation">
-                <span class="fa fa-arrow-circle-down"></span>
-            </button>
-            <button class="navigation">
-                <span class="fa fa-arrow-circle-up"></span>
             </button>
             </form>
             {{foods-table foods=model actionIconAction="addFood" iconName="fa fa-plus-circle"
@@ -216,17 +205,17 @@
     <div class="foods-table">
         <table>
             <colgroup>
-                <col class="icon" />
-                <col class="name" />
-                <col class="amount" />
-                <col class="nutrient protein" />
-                <col class="nutrient complex" />
-                <col class="nutrient sugar" />
-                <col class="nutrient o3" />
-                <col class="nutrient o6" />
-                <col class="nutrient mUnsaturated" />
-                <col class="nutrient saturated" />
-                <col class="nutrient calories" />
+                <col class="icon"/>
+                <col class="name"/>
+                <col class="amount"/>
+                <col class="nutrient protein"/>
+                <col class="nutrient complex"/>
+                <col class="nutrient sugar"/>
+                <col class="nutrient o3"/>
+                <col class="nutrient o6"/>
+                <col class="nutrient mUnsaturated"/>
+                <col class="nutrient saturated"/>
+                <col class="nutrient calories"/>
             </colgroup>
 
             <tr class="headers">
@@ -270,7 +259,7 @@
             {{/each}}
             <tr class="summary">
                 <td></td>
-                <td>Summary</td>
+                <td>Detailed Summary</td>
                 <td></td>
                 <td>{{proteinSum foods}}</td>
                 <td>{{complexSum foods}}</td>
@@ -290,27 +279,28 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="components/foods-summary-table">
-    <div class="foods-summary-table">
-        <table>
-            <colgroup>
-                <col class="nutrient protein" />
-                <col class="nutrient complex" />
-                <col class="nutrient mUnsaturated" />
-                <col class="nutrient" />
-            </colgroup>
-            <tr class="headers">
-                <th>protein</th>
-                <th>carbs</th>
-                <th>fat</th>
-                <th>calories</th>
-            </tr>
-            <tr class="summary">
-                <td>{{proteinSum foods}}</td>
-                <td>{{carbsSum foods}}</td>
-                <td>{{fatSum foods}}</td>
-                <td>{{calSum foods}}</td>
-            </tr>
-        </table>
+    <div class="foods-summary-table" {{action
+    "tableClickAction"}}>
+    <table>
+        <colgroup>
+            <col class="nutrient protein"/>
+            <col class="nutrient complex"/>
+            <col class="nutrient mUnsaturated"/>
+            <col class="nutrient"/>
+        </colgroup>
+        <tr class="headers">
+            <th>protein</th>
+            <th>carbs</th>
+            <th>fat</th>
+            <th>calories</th>
+        </tr>
+        <tr class="summary">
+            <td>{{proteinSum foods}}</td>
+            <td>{{carbsSum foods}}</td>
+            <td>{{fatSum foods}}</td>
+            <td>{{calSum foods}}</td>
+        </tr>
+    </table>
     </div>
 </script>
 
