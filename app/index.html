@@ -135,7 +135,7 @@
         {{#if visible}}
         {{foods-table foods=foods actionIconAction="removeFood" iconName="fa fa-trash-o"}}
         {{foods-summary-table foods=foods clickAction="goToMeal"}}
-        {{#link-to "meal.searchFood" class="addFood"}}<i class="fa fa-plus-circle"></i> Add Food{{/link-to}}
+        <button {{ action "goToSearch"}}><span><i class="fa fa-plus-circle"></i> Add Food</span></button>
         {{else}}
         {{foods-summary-table foods=foods clickAction="goToMeal"}}
         {{/if}}

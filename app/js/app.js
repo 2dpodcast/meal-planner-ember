@@ -89,7 +89,8 @@ App.MealSearchFoodRoute = Ember.Route.extend({
     queryParams: {
         query: {
             // Opt into full transition
-            refreshModel: true
+            refreshModel: true  // doesn't refresh if route is replaced by config or controller.replaceRoute()!
+            //replace: true  // does not replace if there was only param change!
         }
     },
     model: function (params, transition) {
@@ -103,11 +104,22 @@ App.MealSearchFoodRoute = Ember.Route.extend({
             return expression.exec(food.get('name'));
         });
     },
+
+    // runs once per full transition
+    setupController: function (controller, model, transition) {
+        // update search input value on query change!
+        controller.set('queryField', transition.queryParams.query);
+
+        controller.set('model', model);  // default implementation
+    },
+
     actions: {
         queryParamsDidChange: function (params) {
-            // to update search input value on query change!
-            this.controllerFor('mealSearchFood').set('queryField', params.query);
-            this.refresh();  // otherwise transition would stop without calling model!
+            //entering from another route does not constitute as param change, even though different
+            //param might have been set earlier.
+
+            // update search input value on query change!
+            this.refresh();  // refresh route to call beforeModel + model + afterModel hooks!
         }
     }
 });
