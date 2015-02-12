@@ -105,7 +105,7 @@
                 <!--TODO: perhaps don't use meal controller in this scope, as its params state may get in the way!-->
                 {{#each itemController="meal"}}
                 <li>
-                    <button class="pull-left" {{action
+                    <button {{action
                     'removeMeal'}}>
                     <span class="fa fa-trash-o"></span>
                     </button>
